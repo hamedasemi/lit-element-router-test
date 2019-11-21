@@ -1,6 +1,6 @@
 // @ts-check
 import { LitElement, html, css } from "lit-element";
-import { routerMixin, outletMixin, linkMixin } from "./lit-element-router";
+import { routerMixin, outletMixin, linkMixin } from "lit-element-router";
 
 export class Link extends linkMixin(LitElement) {
     constructor() {
