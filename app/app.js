@@ -1,43 +1,11 @@
 // @ts-check
-import { LitElement, html, css } from "lit-element";
-import { routerMixin, outletMixin, linkMixin } from "lit-element-router";
+import { } from "@webcomponents/webcomponentsjs";
 
-export class Link extends linkMixin(LitElement) {
-    constructor() {
-        super();
-        this.href = "";
-    }
-    static get properties() {
-        return {
-            href: { type: String }
-        };
-    }
-    render() {
-        return html`
-            <a href="${this.href}" @click="${this.linkClick}"><slot></slot></a>
-        `;
-    }
-    linkClick(event) {
-        event.preventDefault();
-        this.navigate(this.href);
-    }
-}
+import { LitElement, html } from "lit-element";
+import { routerMixin } from "lit-element-router";
 
-export class Main extends outletMixin(LitElement) {
-    static get styles() {
-        return css`
-            :host {
-               color: gray;
-            }
-        `;
-    }
-
-    render() {
-        return html`
-            <slot></slot>
-        `;
-    }
-}
+import { } from "./core/main/main";
+import { } from "./shared/link/link";
 
 class App extends routerMixin(LitElement) {
 
@@ -64,7 +32,7 @@ class App extends routerMixin(LitElement) {
             guard: () => {
                 return new Promise((resolve, reject) => {
                     setTimeout(() => {
-                        resolve(true)
+                        resolve(prompt("Authenticate", "true") === "true");
                     }, 1000);
                 })
             }
@@ -106,6 +74,4 @@ class App extends routerMixin(LitElement) {
     }
 }
 
-customElements.define("app-link", Link);
-customElements.define("app-main", Main);
 customElements.define("my-app", App);

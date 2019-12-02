@@ -3,12 +3,25 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "serve": "polymer serve",
-    "sync": "browser-sync start --proxy localhost:8081 --watch --files ./**/*.* --ignore node_modules --logLevel debug"
+    "build": "node --require @babel/register ./node_modules/.bin/webpack",
+    "serve": "node --require @babel/register ./node_modules/.bin/webpack-dev-server"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
   },
   "devDependencies": {
-    "browser-sync": "^2.26.7",
-    "polymer-cli": "^1.9.11"
+    "@babel/core": "^7.7.4",
+    "@babel/preset-env": "^7.7.4",
+    "@babel/register": "^7.7.4",
+    "copy-webpack-plugin": "^5.0.5",
+    "cssnano": "^4.1.10",
+    "html-webpack-plugin": "^4.0.0-beta.11",
+    "postcss-preset-env": "^6.7.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0"
   },
   "dependencies": {
     "@webcomponents/webcomponentsjs": "^2.4.0",
