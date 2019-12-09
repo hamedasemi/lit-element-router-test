@@ -1,2 +1,2 @@
 # LitElement Router Test
-A LitElement Router that uses JavaScript Mixin and RegExp.
+NOTE: This repository is only for testing the lit-element-router, for more information take a look at the LitElement Router Contribution guide: [Github](https://github.com/hamedasemi/lit-element-router#contribution) or [npm](https://www.npmjs.com/package/lit-element-router#contribution)
