@@ -1,6 +1,6 @@
 // @ts-check
 import { LitElement, html, css, unsafeCSS } from "lit-element";
-import { routerMixin, outletMixin, navigateMixin } from "lit-element-router";
+import { navigateMixin } from "lit-element-router";
 
 export class Link extends navigateMixin(LitElement) {
     constructor() {
