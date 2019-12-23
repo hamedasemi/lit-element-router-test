@@ -1,4 +1,5 @@
 // @ts-check
+// @ts-ignore
 import { } from "@webcomponents/webcomponentsjs";
 
 import { LitElement, html } from "lit-element";
