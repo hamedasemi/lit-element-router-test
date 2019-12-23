@@ -14,6 +14,7 @@ class App extends routerMixin(LitElement) {
     static get properties() {
         return {
             route: { type: String },
+            query: { type: Object },
             params: { type: Object }
         };
     }
@@ -24,7 +25,14 @@ class App extends routerMixin(LitElement) {
             pattern: "",
             data: { title: "Home" },
             callback: (route, params, query, data) => { console.log("callback", route, params, query, data) },
-            guard: () => { return true }
+            authentication: {
+                unauthenticated: {
+                    name: 'home-unauthenticated'
+                },
+                authenticate: () => {
+                    return true;
+                }
+            },
         }, {
             name: "info",
             pattern: "info"
@@ -34,13 +42,18 @@ class App extends routerMixin(LitElement) {
         }, {
             name: "user",
             pattern: "user/:id",
-            guard: () => {
-                return new Promise((resolve, reject) => {
-                    setTimeout(() => {
-                        resolve(prompt("Authenticate", "true") === "true");
-                    }, 1000);
-                })
-            }
+            authentication: {
+                unauthenticated: {
+                    name: 'user-unauthenticated'
+                },
+                authenticate: () => {
+                    return new Promise((resolve, reject) => {
+                        setTimeout(() => {
+                            resolve(prompt("Authenticate", "true") === "true");
+                        }, 1000);
+                    });
+                }
+            },
         }, {
             name: "not-found",
             pattern: "*"
@@ -56,6 +69,7 @@ class App extends routerMixin(LitElement) {
     router(route, params, query, data) {
         this.route = route;
         this.params = params;
+        this.query = query;
         console.log(route, params, query, data);
     }
 
@@ -71,10 +85,11 @@ class App extends routerMixin(LitElement) {
 
             <app-main active-route="${this.route}">
                 <div route="home">Home</div>
-                <div route="info">Info</div>
+                <div route="info">Info ${this.query.foo}</div>
                 <app-shopping route="shopping"></app-shopping>
                 <div route="user">User ${this.params.id}</div>
-                <div route="not-authenticated">Not Authenticated</div>
+                <div route="home-unauthenticated">Home Unauthenticated</div>
+                <div route="user-unauthenticated">User Unauthenticated</div>
                 <div route="not-found">Not Found</div>
             </app-main>
         `

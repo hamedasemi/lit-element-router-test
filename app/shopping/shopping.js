@@ -24,10 +24,47 @@ class Shopping extends routerMixin(outletMixin(LitElement)) {
             pattern: "shopping"
         }, {
             name: "shopping-cart",
-            pattern: "shopping/cart"
+            pattern: "shopping/cart",
+            authorization: {
+                unauthorized: {
+                    name: 'shopping-order-unauthorized'
+                },
+                authorize: () => {
+                    return new Promise((resolve, reject) => {
+                        setTimeout(() => {
+                            resolve(prompt("Authorize", "true") === "true");
+                        }, 1000);
+                    });
+                }
+            }
         }, {
             name: "shopping-order",
-            pattern: "shopping/order"
+            pattern: "shopping/order",
+            authentication: {
+                unauthenticated: {
+                    name: 'shopping-order-unauthenticated'
+                },
+                authenticate: () => {
+                    return new Promise((resolve, reject) => {
+                        setTimeout(() => {
+                            resolve(prompt("Authenticate", "true") === "true");
+                        }, 1000);
+                    });
+                }
+            },
+            authorization: {
+                unauthorized: {
+                    name: 'shopping-order-unauthorized'
+                },
+                authorize: () => {
+                    return new Promise((resolve, reject) => {
+                        setTimeout(() => {
+                            resolve(prompt("Authorize", "true") === "true");
+                        }, 1000);
+                    });
+                }
+            }
+
         }, {
             name: "shopping-not-found",
             pattern: "*"
@@ -55,6 +92,8 @@ class Shopping extends routerMixin(outletMixin(LitElement)) {
             <div route="shopping">Shopping</div>
             <div route="shopping-cart">Shopping Cart</div>
             <div route="shopping-order">Shopping Order</div>
+            <div route="shopping-order-unauthenticated">Shopping Order Unauthenticated</div>
+            <div route="shopping-order-unauthorized">Shopping Order Unauthorized</div>
             <div route="shopping-not-found">Shopping Not Found</div>
         `
     }
