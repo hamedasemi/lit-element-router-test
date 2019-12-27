@@ -1,12 +1,13 @@
-// @ts-check
 import { LitElement, html, css, unsafeCSS } from "lit-element";
-import { navigateMixin } from "lit-element-router";
+import { navigator } from "lit-element-router";
 
-export class Link extends navigateMixin(LitElement) {
+@navigator
+export class Link extends LitElement {
     constructor() {
         super();
         this.href = "";
     }
+    
     static get properties() {
         return {
             href: { type: String }
@@ -19,6 +20,7 @@ export class Link extends navigateMixin(LitElement) {
     }
     linkClick(event) {
         event.preventDefault();
+        // @ts-ignore
         this.navigate(this.href);
     }
 }

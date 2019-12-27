@@ -20,6 +20,7 @@ export default {
     },
     cache: true,
     plugins: [
+        // @ts-ignore
         new optimize.AggressiveSplittingPlugin({
             minSize: 30000,
             maxSize: 50000
@@ -48,7 +49,29 @@ export default {
                     ]
                 }
             }],
-        }],
+        }, {
+            test: /\.js$/,
+            exclude: [/node_modules(?!\/(lit-html|lit-element|lit-element-router))/],
+            loader: 'babel-loader',
+            options: {
+                presets: [
+                    [
+                        '@babel/preset-env',
+                        {
+                            targets: {
+                                chrome: '60'
+                            }
+                        }
+                    ]
+                ],
+                plugins: [
+                    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+                    ['@babel/plugin-transform-runtime'],
+                    // ['@babel/plugin-proposal-class-properties', { 'loose': true }],
+                    // ['@babel/plugin-transform-classes', { 'loose': true }]
+                ],
+            }
+        }]
     },
     devServer: {
         host: "0.0.0.0",

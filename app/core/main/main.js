@@ -1,8 +1,8 @@
-// @ts-check
 import { LitElement, html, css } from "lit-element";
-import { outletMixin } from "lit-element-router";
+import { outlet } from "lit-element-router";
 
-export class Main extends outletMixin(LitElement) {
+@outlet
+class Main extends LitElement {
     static get styles() {
         return css`
             :host {

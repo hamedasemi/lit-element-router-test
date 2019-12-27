@@ -1,16 +1,16 @@
-// @ts-check
 // @ts-ignore
 import { } from "@webcomponents/webcomponentsjs";
 
 import { LitElement, html } from "lit-element";
-import { routerMixin } from "lit-element-router";
+import { router } from "lit-element-router";
 
 import { } from "./core/main/main";
 import { } from "./shared/link/link";
 
 import { } from "./shopping/shopping";
 
-class App extends routerMixin(LitElement) {
+@router
+class App extends LitElement {
 
     static get properties() {
         return {
