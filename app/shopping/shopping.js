@@ -32,7 +32,7 @@ class Shopping extends LitElement {
                 authorize: () => {
                     return new Promise((resolve, reject) => {
                         setTimeout(() => {
-                            resolve(prompt("Authorize", "true") === "true");
+                            resolve(confirm("Authorize"));
                         }, 1000);
                     });
                 }
@@ -47,7 +47,7 @@ class Shopping extends LitElement {
                 authenticate: () => {
                     return new Promise((resolve, reject) => {
                         setTimeout(() => {
-                            resolve(prompt("Authenticate", "true") === "true");
+                            resolve(confirm("Authenticate"));
                         }, 1000);
                     });
                 }
@@ -59,7 +59,7 @@ class Shopping extends LitElement {
                 authorize: () => {
                     return new Promise((resolve, reject) => {
                         setTimeout(() => {
-                            resolve(prompt("Authorize", "true") === "true");
+                            resolve(confirm("Authorize"));
                         }, 1000);
                     });
                 }
