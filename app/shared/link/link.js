@@ -2,7 +2,7 @@ import { LitElement, html, css, unsafeCSS } from "lit-element";
 import { navigator } from "lit-element-router";
 
 @navigator
-export class Link extends LitElement {
+class Link extends LitElement {
     constructor() {
         super();
         this.href = "";
