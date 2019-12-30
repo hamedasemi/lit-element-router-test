@@ -1,9 +1,8 @@
-import { LitElement, html, css } from "lit-element";
-import { router, navigator, outlet } from "lit-element-router";
+import { LitElement, html, css } from 'lit-element';
+import { router, outlet } from 'lit-element-router';
 
 @router @outlet
 class Shopping extends LitElement {
-
     static get styles() {
         return css`
             :host {
@@ -29,13 +28,7 @@ class Shopping extends LitElement {
                 unauthorized: {
                     name: 'shopping-order-unauthorized'
                 },
-                authorize: () => {
-                    return new Promise((resolve, reject) => {
-                        setTimeout(() => {
-                            resolve(confirm("Authorize"));
-                        }, 1000);
-                    });
-                }
+                authorize: this.authenticate
             }
         }, {
             name: "shopping-order",
@@ -96,6 +89,15 @@ class Shopping extends LitElement {
             <div route="shopping-order-unauthorized">Shopping Order Unauthorized</div>
             <div route="shopping-not-found">Shopping Not Found</div>
         `
+    }
+
+    static authenticate() {
+        console.log(this.params)
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(confirm("Authorize"));
+            }, 1000);
+        });
     }
 }
 
