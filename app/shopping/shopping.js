@@ -81,7 +81,7 @@ class Shopping extends LitElement {
             <app-link href="/shopping/cart">shapping/cart</app-link>
             <app-link href="/shopping/order">shapping/order</app-link>
             <app-link href="/shopping/not/found">shopping/not/found</app-link>
-
+            
             <div route="shopping">Shopping</div>
             <div route="shopping-cart">Shopping Cart</div>
             <div route="shopping-order">Shopping Order</div>
