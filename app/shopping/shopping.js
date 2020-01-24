@@ -28,7 +28,7 @@ class Shopping extends LitElement {
                 unauthorized: {
                     name: 'shopping-order-unauthorized'
                 },
-                authorize: this.authenticate
+                authorize: this.authorize
             }
         }, {
             name: "shopping-order",
@@ -91,7 +91,7 @@ class Shopping extends LitElement {
         `
     }
 
-    static authenticate() {
+    static authorize() {
         console.log(this.params)
         return new Promise((resolve, reject) => {
             setTimeout(() => {
