@@ -92,6 +92,7 @@ class Shopping extends LitElement {
     }
 
     static authorize() {
+        // @ts-ignore
         console.log(this.params)
         return new Promise((resolve, reject) => {
             setTimeout(() => {
